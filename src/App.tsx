@@ -139,23 +139,22 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#FAFAFD] flex flex-col md:flex-row">
+    <div className="min-h-screen bg-[#F7F7F8] flex flex-col md:flex-row">
       
       {/* DESKTOP SIDEBAR */}
-      <aside className="hidden md:flex md:w-64 bg-white border-r border-[#EBEBEF] flex-col justify-between py-8 px-6 shrink-0 h-screen sticky top-0">
-        <div className="space-y-8">
-          <div className="flex items-center space-x-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#7C5CFC] to-[#9175FE] flex items-center justify-center text-white font-medium shadow-sm">
-              <Mail className="w-5 h-5 text-white" />
+      <aside className="hidden md:flex md:w-56 bg-white border-r border-[#E8E8EC] flex-col justify-between py-7 px-5 shrink-0 h-screen sticky top-0">
+        {/* Logo */}
+        <div className="space-y-7">
+          <div className="flex items-center gap-2.5 px-1">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#7C5CFC] to-[#9B7EFD] flex items-center justify-center shadow-sm shadow-purple-200">
+              <Mail className="w-4 h-4 text-white" />
             </div>
-            <div>
-              <span className="font-display font-black text-lg tracking-tight text-gray-950 flex items-center">
-                EQUINOX<span className="text-[#96969B] font-[400] text-sm ml-0.5 tracking-wider">MAIL</span>
-              </span>
-            </div>
+            <span className="font-semibold text-[15px] tracking-tight text-[#0F0F10]">
+              Equinox<span className="text-[#7C5CFC]">Mail</span>
+            </span>
           </div>
 
-          <nav className="space-y-1.5">
+          <nav className="space-y-0.5">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -163,13 +162,13 @@ export default function App() {
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer ${
+                  className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[13.5px] font-medium transition-all cursor-pointer ${
                     isActive
-                      ? 'bg-[#F2EFFE] text-[#7C5CFC] font-semibold'
-                      : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                      ? 'bg-[#F3F0FF] text-[#7C5CFC]'
+                      : 'text-[#6B6B78] hover:text-[#0F0F10] hover:bg-[#F7F7F8]'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#7C5CFC]' : 'text-gray-400'}`} />
+                  <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#7C5CFC]' : 'text-[#9999A6]'}`} />
                   <span>{item.label}</span>
                 </button>
               );
@@ -177,54 +176,52 @@ export default function App() {
           </nav>
         </div>
 
-        <div className="space-y-4">
-          <div className="bg-gray-50 rounded-2xl p-4 space-y-2">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#7C5CFC] flex items-center justify-center text-white text-xs font-bold">
-                {(currentUser?.name || currentUser?.email || '?')[0].toUpperCase()}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-800 truncate">{currentUser?.name || 'User'}</p>
-                <p className="text-xs text-gray-400 truncate">{currentUser?.email}</p>
-              </div>
+        {/* User + logout */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-2.5 px-1">
+            <div className="w-7 h-7 rounded-full bg-[#7C5CFC] flex items-center justify-center text-white text-[11px] font-semibold shrink-0">
+              {(currentUser?.name || currentUser?.email || '?')[0].toUpperCase()}
             </div>
-            {currentUser?.role === 'admin' && (
-              <span className="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-600 uppercase tracking-wider">Admin</span>
-            )}
+            <div className="flex-1 min-w-0">
+              <p className="text-[13px] font-medium text-[#0F0F10] truncate leading-none">{currentUser?.name || 'User'}</p>
+              <p className="text-[11px] text-[#9999A6] truncate mt-0.5">{currentUser?.email}</p>
+            </div>
           </div>
-
+          {currentUser?.role === 'admin' && (
+            <span className="inline-flex ml-1 px-2 py-0.5 rounded-md text-[10px] font-semibold bg-[#F3F0FF] text-[#7C5CFC] uppercase tracking-wider">Admin</span>
+          )}
           <button
             onClick={handleLogout}
-            className="w-full flex items-center justify-center space-x-1.5 px-3 py-2.5 text-xs font-medium text-red-500 hover:bg-red-50 hover:text-red-600 rounded-xl transition-colors border border-dashed border-red-200 cursor-pointer"
+            className="w-full flex items-center justify-center gap-1.5 px-3 py-2 text-[12px] font-medium text-[#9999A6] hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
           >
             <LogOut className="w-3.5 h-3.5" />
-            <span>Sign Out</span>
+            <span>Sign out</span>
           </button>
         </div>
       </aside>
 
       {/* MOBILE HEADER */}
-      <header className="md:hidden sticky top-0 z-50 bg-white border-b border-[#EBEBEF] px-4 py-3.5 flex items-center justify-between">
-        <div className="flex items-center space-x-2.5">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#7C5CFC] to-[#9175FE] flex items-center justify-center text-white">
-            <Mail className="w-4 h-4 text-white" />
+      <header className="md:hidden sticky top-0 z-50 bg-white border-b border-[#E8E8EC] px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#7C5CFC] to-[#9B7EFD] flex items-center justify-center">
+            <Mail className="w-3.5 h-3.5 text-white" />
           </div>
-          <span className="font-display font-bold text-base tracking-tight text-gray-950">
-            EQUINOX<span className="text-[#96969B] font-[400] text-xs ml-0.5 tracking-wider">MAIL</span>
+          <span className="font-semibold text-[14px] text-[#0F0F10]">
+            Equinox<span className="text-[#7C5CFC]">Mail</span>
           </span>
         </div>
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-1 rounded-lg text-gray-500 hover:bg-gray-50"
+          className="p-1.5 rounded-lg text-[#6B6B78] hover:bg-[#F7F7F8]"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </header>
 
       {/* MOBILE NAVIGATION */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-[53px] bg-white z-40 p-6 flex flex-col justify-between border-t border-[#EBEBEF]">
-          <nav className="space-y-2">
+        <div className="md:hidden fixed inset-0 top-[49px] bg-white z-40 p-5 flex flex-col justify-between border-t border-[#E8E8EC]">
+          <nav className="space-y-1">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -235,35 +232,35 @@ export default function App() {
                     setActiveTab(item.id);
                     setMobileMenuOpen(false);
                   }}
-                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
-                    isActive ? 'bg-[#F2EFFE] text-[#7C5CFC]' : 'text-gray-600 hover:bg-gray-50'
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                    isActive ? 'bg-[#F3F0FF] text-[#7C5CFC]' : 'text-[#6B6B78] hover:bg-[#F7F7F8]'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#7C5CFC]' : 'text-gray-400'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#7C5CFC]' : 'text-[#9999A6]'}`} />
                   <span>{item.label}</span>
                 </button>
               );
             })}
           </nav>
           
-          <div className="space-y-4">
-            <div className="bg-gray-50 rounded-2xl p-4">
+          <div className="space-y-3">
+            <div className="bg-[#F7F7F8] rounded-xl p-3.5">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-[#7C5CFC] flex items-center justify-center text-white text-xs font-bold">
                   {(currentUser?.name || currentUser?.email || '?')[0].toUpperCase()}
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-800">{currentUser?.name || 'User'}</p>
-                  <p className="text-xs text-gray-400">{currentUser?.email}</p>
+                  <p className="text-sm font-medium text-[#0F0F10]">{currentUser?.name || 'User'}</p>
+                  <p className="text-xs text-[#9999A6]">{currentUser?.email}</p>
                 </div>
               </div>
             </div>
             <button
               onClick={() => { handleLogout(); setMobileMenuOpen(false); }}
-              className="w-full flex items-center justify-center space-x-1.5 px-3 py-2.5 text-xs font-semibold text-red-500 hover:bg-red-50 rounded-xl border border-dashed border-red-200"
+              className="w-full flex items-center justify-center gap-1.5 px-3 py-2.5 text-xs font-medium text-[#9999A6] hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
             >
               <LogOut className="w-3.5 h-3.5" />
-              <span>Sign Out</span>
+              <span>Sign out</span>
             </button>
           </div>
         </div>
@@ -271,7 +268,7 @@ export default function App() {
 
       {/* MAIN CONTENT */}
       <div className="flex-1 flex flex-col justify-between min-h-screen">
-        <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="flex-1 w-full max-w-6xl mx-auto px-5 sm:px-8 py-8">
           
           <div style={{ display: activeTab === 'dashboard' ? 'block' : 'none' }}>
             <DashboardTab
