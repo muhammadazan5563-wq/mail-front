@@ -93,6 +93,11 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
   const [logs, setLogs] = useState<CampaignLog[]>([]);
   const [loadingLogs, setLoadingLogs] = useState(false);
 
+  // Track which campaign is currently having its status updated (prevents double-clicks)
+  const [updatingStatusId, setUpdatingStatusId] = useState<string | null>(null);
+  // Optimistic status override: maps campaignId -> pending status while API call is in flight
+  const [optimisticStatus, setOptimisticStatus] = useState<Record<string, string>>({});
+
   // Template Modal and Storage states
   const [showTemplateModal, setShowTemplateModal] = useState(false);
   const [templateModalTarget, setTemplateModalTarget] = useState<'campaign' | 'direct'>('campaign');
@@ -143,7 +148,11 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
 
   // Active sync settings
   useEffect(() => {
-    // Do NOT auto-select a contact list — user must choose one manually
+    if (groupedListNames.length > 0 && !contactListName) {
+      setContactListName(groupedListNames[0]);
+    } else if (groupedListNames.length === 0 && !contactListName) {
+      setContactListName('Q4 Prospecting');
+    }
     
     // Auto-select linked senders
     if (accounts.length > 0 && selectedSenders.length === 0) {
@@ -295,12 +304,18 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
     }
   };
 
-  // Toggle status (Run, Pause, Stop)
+  // Toggle status (Run, Pause, Stop) — with optimistic UI and double-click protection
   const handleUpdateStatus = async (id: string, newStatus: string) => {
+    if (updatingStatusId) return; // Prevent double-clicks
+
     if (newStatus === 'stopped') {
       const confirmStop = window.confirm('Are you sure you want to stop this campaign? This permanently cancels any unsent emails remaining in the rotation queue.');
       if (!confirmStop) return;
     }
+
+    // Optimistic update: immediately show the new status in the UI
+    setUpdatingStatusId(id);
+    setOptimisticStatus(prev => ({ ...prev, [id]: newStatus }));
 
     try {
       const res = await api(`/api/campaigns/${id}`, {
@@ -314,9 +329,24 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
         if (expandedCampaignId === id) {
           fetchLogs(id);
         }
+      } else {
+        // Revert optimistic update on failure
+        setOptimisticStatus(prev => {
+          const next = { ...prev };
+          delete next[id];
+          return next;
+        });
       }
     } catch (err) {
+      // Revert optimistic update on error
+      setOptimisticStatus(prev => {
+        const next = { ...prev };
+        delete next[id];
+        return next;
+      });
       console.error(err);
+    } finally {
+      setUpdatingStatusId(null);
     }
   };
 
@@ -718,10 +748,12 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                         onChange={(e) => setContactListName(e.target.value)}
                         className="font-display font-black text-lg text-gray-950 bg-transparent focus:outline-none cursor-pointer border-b border-dashed border-gray-300 pr-4 pb-0.5 max-w-[200px]"
                       >
-                        <option value="">-- Select List --</option>
                         {groupedListNames.map((name) => (
                           <option key={name} value={name}>{name}</option>
                         ))}
+                        {groupedListNames.length === 0 && (
+                          <option value="Q4 Prospecting">Q4 Prospecting</option>
+                        )}
                       </select>
                       <span className="text-[11px] text-gray-400 font-mono">
                         ({totalC} items)
@@ -1004,51 +1036,14 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
 
           {/* Table list */}
           {campaigns.length === 0 ? (
-            <div className="bg-white rounded-3xl border border-[#EBEBEF] overflow-hidden">
-              {/* Header illustration area */}
-              <div className="flex flex-col items-center pt-14 pb-8 px-6">
-                <div className="flex items-end gap-2 mb-8 opacity-20">
-                  <div className="w-16 h-20 bg-gray-300 rounded-xl rotate-[-8deg]" />
-                  <div className="w-20 h-24 bg-gray-400 rounded-xl" />
-                  <div className="w-16 h-20 bg-gray-300 rounded-xl rotate-[8deg]" />
-                </div>
-                <h3 className="font-display font-black text-gray-950 text-2xl tracking-tight mb-2">Nothing sent yet</h3>
-                <p className="text-sm text-gray-400 text-center max-w-xs leading-relaxed">Choose what you'd like to do next</p>
+            <div className="text-center py-20 bg-white rounded-3xl border border-[#EBEBEF] border-dashed">
+              <div className="w-12 h-12 bg-gray-50 text-gray-300 rounded-full flex items-center justify-center mx-auto mb-3 border border-gray-100">
+                <Send className="w-5 h-5" />
               </div>
-
-              {/* Divider */}
-              <div className="border-t border-[#EBEBEF]" />
-
-              {/* Action rows */}
-              <button
-                onClick={() => setSubTab('create')}
-                className="w-full flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors text-left"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#F2EFFE] flex items-center justify-center flex-shrink-0">
-                  <Plus className="w-5 h-5 text-[#7C5CFC]" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-900 leading-snug">Create new campaign</p>
-                  <p className="text-xs text-gray-400 mt-0.5 leading-snug">Build a sequence and start sending to your list</p>
-                </div>
-                <svg className="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-              </button>
-
-              <div className="border-t border-[#EBEBEF]" />
-
-              <button
-                onClick={() => setSubTab('direct')}
-                className="w-full flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors text-left"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#F2EFFE] flex items-center justify-center flex-shrink-0">
-                  <Send className="w-4 h-4 text-[#7C5CFC]" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-900 leading-snug">Send a direct email</p>
-                  <p className="text-xs text-gray-400 mt-0.5 leading-snug">Fire a one-off message to any recipient instantly</p>
-                </div>
-                <svg className="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-              </button>
+              <h4 className="font-bold text-gray-800 text-sm mb-1">No campaigns initialized yet</h4>
+              <p className="text-xs text-gray-500 max-w-sm mx-auto mb-5 leading-relaxed">
+                Formulate an outbox queue pacing schedule in 'Start Campaign' of bento cards to see it here!
+              </p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -1057,6 +1052,9 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                 const sent = (c.successCount || 0) + (c.failedCount || 0);
                 const progressPercentage = total > 0 ? Math.round((sent / total) * 100) : 0;
                 const isExpanded = expandedCampaignId === c.id;
+                // Use optimistic status if available (instant UI feedback while API processes)
+                const effectiveStatus = optimisticStatus[c.id] || c.status;
+                const isUpdating = updatingStatusId === c.id;
 
                 return (
                   <div
@@ -1072,13 +1070,15 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                           <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold uppercase bg-indigo-50 border border-indigo-150 text-[#7C5CFC]">
                             Auto Rotational
                           </span>
-                          <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold uppercase border ${
-                            c.status === 'running' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-                            c.status === 'paused' ? 'bg-amber-50 text-amber-700 border-amber-200' :
-                            c.status === 'completed' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                          <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase border ${
+                            effectiveStatus === 'running' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
+                            effectiveStatus === 'paused' ? 'bg-amber-50 text-amber-700 border-amber-200' :
+                            effectiveStatus === 'completed' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                            effectiveStatus === 'stopped' ? 'bg-red-50 text-red-700 border-red-200' :
                             'bg-gray-50 text-gray-600 border-gray-200'
                           }`}>
-                            {c.status}
+                            {isUpdating && <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />}
+                            {effectiveStatus}
                           </span>
                         </div>
                         <h4 className="font-display font-black text-gray-950 text-lg tracking-tight leading-snug">{c.name}</h4>
@@ -1121,12 +1121,13 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
 
                       {/* Buttons Deck */}
                       <div className="flex items-center gap-2">
-                        {c.status !== 'completed' && c.status !== 'stopped' && (
+                        {effectiveStatus !== 'completed' && effectiveStatus !== 'stopped' && (
                           <>
-                            {c.status !== 'running' ? (
+                            {effectiveStatus !== 'running' ? (
                               <button
                                 onClick={() => handleUpdateStatus(c.id, 'running')}
-                                className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all"
+                                disabled={isUpdating}
+                                className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                                 title="Resume / Start"
                               >
                                 <Play className="w-4.5 h-4.5 fill-emerald-600" />
@@ -1134,7 +1135,8 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                             ) : (
                               <button
                                 onClick={() => handleUpdateStatus(c.id, 'paused')}
-                                className="p-2 text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
+                                disabled={isUpdating}
+                                className="p-2 text-amber-600 hover:bg-amber-50 rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                                 title="Pause"
                               >
                                 <Pause className="w-4.5 h-4.5 fill-amber-600" />
@@ -1142,7 +1144,8 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                             )}
                             <button
                               onClick={() => handleUpdateStatus(c.id, 'stopped')}
-                              className="p-2 text-red-500 hover:bg-red-50 rounded-xl transition-all"
+                              disabled={isUpdating}
+                              className="p-2 text-red-500 hover:bg-red-50 rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                               title="Stop sequence"
                             >
                               <Square className="w-4.5 h-4.5 fill-red-500" />
@@ -1191,7 +1194,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                       <div className="bg-[#FAFAFD] border-t border-[#EBEBEF] p-6 space-y-4">
                         <div className="flex justify-between items-center">
                           <h5 className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-1">
-                            <BarChart2 className="w-3.5 h-3.5 text-[#7C5CFC]" /> Live Dispatch Streams ({logs.length}{logs.length >= 50 ? ' — showing latest 50' : ''})
+                            <BarChart2 className="w-3.5 h-3.5 text-[#7C5CFC]" /> Live Dispatch Streams ({logs.length})
                           </h5>
                           <button
                             onClick={() => fetchLogs(c.id)}
@@ -1256,7 +1259,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                 <Send className="w-5 h-5 text-[#7C5CFC]" /> Direct Single Dispatch
               </h3>
               <p className="text-xs text-gray-500">
-                Send a one-off email directly from any connected Gmail account — bypasses campaign sequences.
+                Send manual, instant messages directly using any of your authenticated sender nodes — bypasses automated sequence rotation.
               </p>
             </div>
           </div>
@@ -1477,7 +1480,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                           {log.status === 'success' ? 'Sent' : 'Fail'}
                         </span>
                       </div>
-                      <p className="text-[9px] text-gray-400 truncate">Sender: {log.sender}</p>
+                      <p className="text-[9px] text-gray-400 truncate">Sender node: {log.sender}</p>
                       <p className="text-[10px] text-gray-500 truncate italic">"{log.subject}"</p>
                       {log.errorMessage && (
                         <p className="text-red-500 text-[8px] font-mono bg-red-50/55 p-1 rounded">
