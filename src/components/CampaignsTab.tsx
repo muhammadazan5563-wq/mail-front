@@ -1116,7 +1116,6 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                         <div className="flex gap-4 text-[10px] text-gray-400 font-mono">
                           <span className="text-emerald-600 font-bold">Sent: {c.successCount || 0}</span>
                           <span className="text-red-500 font-bold">Errors: {c.failedCount || 0}</span>
-                          <span className="text-[#7C5CFC] font-bold">Opened: {c.openedCount || 0}{c.successCount > 0 ? ` (${Math.round(((c.openedCount || 0) / c.successCount) * 100)}%)` : ''}</span>
                         </div>
                       </div>
 
