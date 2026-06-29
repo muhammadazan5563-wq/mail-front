@@ -570,13 +570,13 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
     <div className="space-y-8">
       
       {/* Dynamic Sub-tab selector */}
-      <div className="flex border-b border-[#EBEBEF] space-x-6 pb-px">
+      <div className="flex border-b border-[#E8E8EC] space-x-6 pb-px">
         <button
           onClick={() => setSubTab('create')}
           className={`pb-3.5 text-sm font-semibold tracking-tight cursor-pointer transition-all ${
             subTab === 'create'
               ? 'border-b-2 border-[#7C5CFC] text-[#7C5CFC]'
-              : 'text-gray-400 hover:text-gray-900'
+              : 'text-[#9999A6] hover:text-[#0F0F10]'
           }`}
         >
           Start Campaign
@@ -589,7 +589,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
           className={`pb-3.5 text-sm font-semibold tracking-tight cursor-pointer relative transition-all ${
             subTab === 'schedules'
               ? 'border-b-2 border-[#7C5CFC] text-[#7C5CFC]'
-              : 'text-gray-400 hover:text-gray-900'
+              : 'text-[#9999A6] hover:text-[#0F0F10]'
           }`}
         >
           Live Schedules
@@ -607,7 +607,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
           className={`pb-3.5 text-sm font-semibold tracking-tight cursor-pointer transition-all ${
             subTab === 'direct'
               ? 'border-b-2 border-[#7C5CFC] text-[#7C5CFC]'
-              : 'text-gray-400 hover:text-gray-900'
+              : 'text-[#9999A6] hover:text-[#0F0F10]'
           }`}
         >
           Direct Send
@@ -620,7 +620,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
           {/* TOP HERO HEADER */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 py-2">
             <div>
-              <h2 className="text-3xl font-black font-display tracking-tight text-gray-950 flex items-center gap-2">
+              <h2 className="text-3xl font-black font-display tracking-tight text-[#0F0F10] flex items-center gap-2">
                 START CAMPAIGN
               </h2>
               <p className="text-[11px] text-[#8C8C9A] mt-1 select-all font-mono">
@@ -633,7 +633,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                 type="text" 
                 value={name} 
                 onChange={(e) => setName(e.target.value)}
-                className="bg-white border border-[#EBEBEF] rounded-full px-4 py-2 text-xs text-gray-800 focus:outline-none focus:border-[#7C5CFC] w-48 md:w-60 font-semibold text-center"
+                className="bg-white border border-[#E8E8EC] rounded-full px-4 py-2 text-xs text-[#1A1A20] focus:outline-none focus:border-[#7C5CFC] w-48 md:w-60 font-semibold text-center"
                 placeholder="Campaign Sequence Name"
               />
               <button
@@ -654,12 +654,12 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 {/* CARD 1: AUTO-ROTATION LOGIC - ACCOUNT STACK */}
-                <div className="bg-white border border-[#EBEBEF] rounded-3xl p-6 shadow-[0_2px_12px_-3px_rgba(0,0,0,0.03)] h-[280px] lg:h-[300px] flex flex-col justify-between">
+                <div className="bg-white border border-[#E8E8EC] rounded-2xl p-6 shadow-[0_2px_12px_-3px_rgba(0,0,0,0.03)] h-[280px] lg:h-[300px] flex flex-col justify-between">
                   <div>
                     <span className="text-[10px] font-black tracking-widest text-[#7C5CFC]/80 uppercase block mb-1">
                       AUTO-ROTATION LOGIC
                     </span>
-                    <h3 className="text-lg font-black font-display text-gray-950 tracking-tight">
+                    <h3 className="text-lg font-black font-display text-[#0F0F10] tracking-tight">
                       Account Stack
                     </h3>
                   </div>
@@ -668,8 +668,8 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                   <div className="my-3 space-y-2.5 overflow-y-auto max-h-[140px] pr-1.5">
                     {accounts.length === 0 ? (
                       <div className="text-center py-5 space-y-1">
-                        <p className="text-xs text-gray-400 italic">No connected accounts.</p>
-                        <p className="text-[10px] text-gray-400">Defaulting rotation stack to 20 virtual nodes.</p>
+                        <p className="text-xs text-[#9999A6] italic">No connected accounts.</p>
+                        <p className="text-[10px] text-[#9999A6]">Defaulting rotation stack to 20 virtual nodes.</p>
                       </div>
                     ) : (
                       accounts.map((acc) => (
@@ -684,7 +684,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                               onChange={() => handleToggleSender(acc.email)}
                               className="rounded border-gray-300 text-[#7C5CFC] focus:ring-[#7C5CFC]"
                             />
-                            <span className="font-mono font-medium text-gray-700 truncate block">{acc.email}</span>
+                            <span className="font-mono font-medium text-[#3A3A44] truncate block">{acc.email}</span>
                           </div>
                           <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-[#EBFDF5] text-[#10B981] shrink-0">
                             <span className="w-1 h-1 rounded-full bg-[#10B981]"></span>
@@ -707,7 +707,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                 </div>
 
                 {/* CARD 2: CONTACT LIST */}
-                <div className="bg-white border border-[#EBEBEF] rounded-3xl p-6 shadow-[0_2px_12px_-3px_rgba(0,0,0,0.03)] h-[280px] lg:h-[300px] flex flex-col justify-between">
+                <div className="bg-white border border-[#E8E8EC] rounded-2xl p-6 shadow-[0_2px_12px_-3px_rgba(0,0,0,0.03)] h-[280px] lg:h-[300px] flex flex-col justify-between">
                   <div>
                     <span className="text-[10px] font-black tracking-widest text-[#7C5CFC]/80 uppercase block mb-1">
                       CONTACT LIST
@@ -716,14 +716,14 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                       <select
                         value={contactListName}
                         onChange={(e) => setContactListName(e.target.value)}
-                        className="font-display font-black text-lg text-gray-950 bg-transparent focus:outline-none cursor-pointer border-b border-dashed border-gray-300 pr-4 pb-0.5 max-w-[200px]"
+                        className="font-display font-black text-lg text-[#0F0F10] bg-transparent focus:outline-none cursor-pointer border-b border-dashed border-gray-300 pr-4 pb-0.5 max-w-[200px]"
                       >
                         <option value="">-- Select List --</option>
                         {groupedListNames.map((name) => (
                           <option key={name} value={name}>{name}</option>
                         ))}
                       </select>
-                      <span className="text-[11px] text-gray-400 font-mono">
+                      <span className="text-[11px] text-[#9999A6] font-mono">
                         ({totalC} items)
                       </span>
                     </div>
@@ -738,7 +738,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                     className={`relative border-2 border-dashed rounded-2xl p-4 flex flex-col items-center justify-center text-center transition-all cursor-pointer h-[130px] ${
                       dragActive
                         ? 'border-[#7C5CFC] bg-[#F2EFFE]/20'
-                        : 'border-[#EBEBEF] hover:border-gray-300 bg-gray-50/50'
+                        : 'border-[#E8E8EC] hover:border-gray-300 bg-gray-50/50'
                     }`}
                   >
                     <input
@@ -751,8 +751,8 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                     <div className="space-y-1">
                       <FileSpreadsheet className="w-6 h-6 text-[#7C5CFC] mx-auto opacity-80" />
                       <div>
-                        <p className="text-xs font-bold text-gray-800">Drag & Drop CSV</p>
-                        <p className="text-[10px] text-gray-400 font-medium">or click to browse files</p>
+                        <p className="text-xs font-bold text-[#1A1A20]">Drag & Drop CSV</p>
+                        <p className="text-[10px] text-[#9999A6] font-medium">or click to browse files</p>
                       </div>
                     </div>
                   </div>
@@ -774,9 +774,9 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
               </div>
 
               {/* CARD 4: TEXT TEMPLATE */}
-              <div className="bg-white border border-[#EBEBEF] rounded-3xl p-6 shadow-[0_2px_12px_-3px_rgba(0,0,0,0.03)] space-y-4">
+              <div className="bg-white border border-[#E8E8EC] rounded-2xl p-6 shadow-[0_2px_12px_-3px_rgba(0,0,0,0.03)] space-y-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-base font-black font-display text-gray-950 tracking-tight">
+                  <h3 className="text-base font-black font-display text-[#0F0F10] tracking-tight">
                     Text Template
                   </h3>
                   
@@ -787,8 +787,8 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                       onClick={() => setTemplateField('subject')}
                       className={`px-3 py-1 rounded-full cursor-pointer transition-all ${
                         templateField === 'subject'
-                          ? 'bg-white text-gray-900 shadow-sm'
-                          : 'text-gray-400'
+                          ? 'bg-white text-[#0F0F10] shadow-sm'
+                          : 'text-[#9999A6]'
                       }`}
                     >
                       SUBJECT
@@ -798,8 +798,8 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                       onClick={() => setTemplateField('body')}
                       className={`px-3 py-1 rounded-full cursor-pointer transition-all ${
                         templateField === 'body'
-                          ? 'bg-white text-gray-900 shadow-sm'
-                          : 'text-gray-400'
+                          ? 'bg-white text-[#0F0F10] shadow-sm'
+                          : 'text-[#9999A6]'
                       }`}
                     >
                       BODY
@@ -811,12 +811,12 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                 <div className="space-y-3">
                   {templateField === 'subject' ? (
                     <div className="space-y-1.5">
-                      <label className="text-[10px] text-gray-400 font-mono uppercase font-bold tracking-wider">Subject Line</label>
+                      <label className="text-[10px] text-[#9999A6] font-mono uppercase font-bold tracking-wider">Subject Line</label>
                       <input
                         type="text"
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
-                        className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                        className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[#7C5CFC]"
                         placeholder="Sequence Subject Template"
                       />
                     </div>
@@ -830,7 +830,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                             setNewTemplateBody(bodyTemplate);
                             setShowTemplateModal(true);
                           }}
-                          className="text-[10px] text-gray-400 hover:text-[#7C5CFC] hover:underline font-mono uppercase font-bold tracking-wider cursor-pointer flex items-center gap-1.5 select-none"
+                          className="text-[10px] text-[#9999A6] hover:text-[#7C5CFC] hover:underline font-mono uppercase font-bold tracking-wider cursor-pointer flex items-center gap-1.5 select-none"
                           title="Click to design & manage templates"
                         >
                           Draft Template <span className="text-[10px] text-[#7C5CFC] font-black">✦ Manage Templates (Popup)</span>
@@ -856,12 +856,12 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                         rows={6}
                         value={bodyTemplate}
                         onChange={(e) => setBodyTemplate(e.target.value)}
-                        className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-2xl p-4 text-xs font-sans focus:outline-none focus:border-[#7C5CFC] leading-relaxed resize-none"
+                        className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-2xl p-4 text-xs font-sans focus:outline-none focus:border-[#7C5CFC] leading-relaxed resize-none"
                         placeholder="Draft email body style"
                       />
                     </div>
                   )}
-                  <p className="text-[10px] text-gray-400 font-mono text-right">
+                  <p className="text-[10px] text-[#9999A6] font-mono text-right">
                     Supports <span className="text-[#7C5CFC] font-semibold">{"{{firstName}}"}</span> and <span className="text-[#7C5CFC] font-semibold">{"{{company}}"}</span> placeholders
                   </p>
                 </div>
@@ -870,7 +870,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
             </div>
 
             {/* COLUMN 3 RIGHT SIDEBAR CARD: VELOCITY LIMITS */}
-            <div className="bg-white border border-[#EBEBEF] rounded-3xl p-6 shadow-[0_2px_12px_-3px_rgba(0,0,0,0.03)] space-y-6">
+            <div className="bg-white border border-[#E8E8EC] rounded-2xl p-6 shadow-[0_2px_12px_-3px_rgba(0,0,0,0.03)] space-y-6">
               
               <div className="space-y-4">
                 <div>
@@ -881,7 +881,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                   {/* Slider hourly send limit */}
                   <div className="space-y-1.5 mt-3">
                     <div className="flex justify-between items-center text-xs">
-                      <span className="text-gray-500 font-medium">Emails per hour / account</span>
+                      <span className="text-[#6B6B78] font-medium">Emails per hour / account</span>
                       <span className="text-[#7C5CFC] font-bold font-mono bg-[#F2EFFE] px-2 py-0.5 rounded">
                         {emailsPerHour.toLocaleString()}
                       </span>
@@ -893,7 +893,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                       max="1500"
                       value={emailsPerHour}
                       onChange={(e) => setEmailsPerHour(Number(e.target.value))}
-                      className="w-full accent-[#7C5CFC] h-1.5 bg-gray-100 rounded-lg appearance-none cursor-pointer"
+                      className="w-full accent-[#7C5CFC] h-1.5 bg-[#F0F0F3] rounded-lg appearance-none cursor-pointer"
                     />
                   </div>
                 </div>
@@ -901,7 +901,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                 {/* Delay configuration input */}
                 <div className="space-y-1.5">
                   <div className="flex justify-between items-center text-xs">
-                    <span className="text-gray-500 font-medium">Custom Delay (sec)</span>
+                    <span className="text-[#6B6B78] font-medium">Custom Delay (sec)</span>
                   </div>
                   <input
                     type="number"
@@ -909,60 +909,60 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                     max="1000"
                     value={customDelay}
                     onChange={(e) => handleCustomDelayChange(Math.max(1, Number(e.target.value)))}
-                    className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-4 py-2.5 text-xs text-center font-bold focus:outline-none focus:border-[#7C5CFC]"
+                    className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-4 py-2.5 text-xs text-center font-bold focus:outline-none focus:border-[#7C5CFC]"
                   />
                 </div>
 
                 {/* Reply-To field */}
                 <div className="space-y-1.5">
                   <div className="flex justify-between items-center text-xs">
-                    <span className="text-gray-500 font-medium">Reply-To Email</span>
-                    <span className="text-[10px] text-gray-400">Optional</span>
+                    <span className="text-[#6B6B78] font-medium">Reply-To Email</span>
+                    <span className="text-[10px] text-[#9999A6]">Optional</span>
                   </div>
                   <input
                     type="email"
                     placeholder="replies@yourdomain.com"
                     value={replyTo}
                     onChange={(e) => setReplyTo(e.target.value)}
-                    className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                    className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[#7C5CFC]"
                   />
-                  <p className="text-[10px] text-gray-400">Replies will be directed to this address instead of the sender.</p>
+                  <p className="text-[10px] text-[#9999A6]">Replies will be directed to this address instead of the sender.</p>
                 </div>
 
                 {/* Sender Name field */}
                 <div className="space-y-1.5">
                   <div className="flex justify-between items-center text-xs">
-                    <span className="text-gray-500 font-medium">Sender Display Name</span>
-                    <span className="text-[10px] text-gray-400">Optional</span>
+                    <span className="text-[#6B6B78] font-medium">Sender Display Name</span>
+                    <span className="text-[10px] text-[#9999A6]">Optional</span>
                   </div>
                   <input
                     type="text"
                     placeholder="Your Company Name"
                     value={senderName}
                     onChange={(e) => setSenderName(e.target.value)}
-                    className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                    className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[#7C5CFC]"
                   />
-                  <p className="text-[10px] text-gray-400">Overrides the default Gmail display name for this campaign.</p>
+                  <p className="text-[10px] text-[#9999A6]">Overrides the default Gmail display name for this campaign.</p>
                 </div>
               </div>
 
               {/* ITERATION STATS */}
               <div className="space-y-3 pt-2 border-t border-[#F0F0F3]">
-                <span className="text-[10px] font-black tracking-widest text-gray-400 uppercase block">
+                <span className="text-[10px] font-black tracking-widest text-[#9999A6] uppercase block">
                   ITERATION STATS
                 </span>
 
                 <div className="grid grid-cols-2 gap-3">
                   {/* Stat block 1 */}
-                  <div className="bg-[#FAFAFD] border border-[#EBEBEF] rounded-2xl p-4 text-center space-y-1">
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-wider">CYCLE TIME</p>
-                    <p className="font-display font-black text-xl text-gray-900 tracking-tight">{cycleTimeText}</p>
+                  <div className="bg-[#FAFAFD] border border-[#E8E8EC] rounded-2xl p-4 text-center space-y-1">
+                    <p className="text-[9px] font-black text-[#9999A6] uppercase tracking-wider">CYCLE TIME</p>
+                    <p className="font-display font-black text-xl text-[#0F0F10] tracking-tight">{cycleTimeText}</p>
                   </div>
 
                   {/* Stat block 2 */}
-                  <div className="bg-[#FAFAFD] border border-[#EBEBEF] rounded-2xl p-4 text-center space-y-1">
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-wider">DAILY LIMIT</p>
-                    <p className="font-display font-black text-xl text-gray-900 tracking-tight">{dailyLimitText}</p>
+                  <div className="bg-[#FAFAFD] border border-[#E8E8EC] rounded-2xl p-4 text-center space-y-1">
+                    <p className="text-[9px] font-black text-[#9999A6] uppercase tracking-wider">DAILY LIMIT</p>
+                    <p className="font-display font-black text-xl text-[#0F0F10] tracking-tight">{dailyLimitText}</p>
                   </div>
                 </div>
               </div>
@@ -970,7 +970,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
               {/* ADVISORY BLUE CALLOUT */}
               <div className="bg-[#F4F2FF] border border-[#E0D8FF] rounded-2xl p-4 text-xs text-[#5D3CD2] leading-relaxed shadow-sm">
                 <span className="font-bold block mb-0.5">NOTE:</span>
-                Your current settings will rotate through <span className="font-semibold text-gray-900">{activeCount}</span> accounts across <span className="font-semibold text-gray-900">{totalC}</span> contacts. System will auto-recalculate delay to maintain <span className="font-semibold text-gray-900">{emailsPerHour}/hr</span> limit per account.
+                Your current settings will rotate through <span className="font-semibold text-[#0F0F10]">{activeCount}</span> accounts across <span className="font-semibold text-[#0F0F10]">{totalC}</span> contacts. System will auto-recalculate delay to maintain <span className="font-semibold text-[#0F0F10]">{emailsPerHour}/hr</span> limit per account.
               </div>
 
             </div>
@@ -983,19 +983,19 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
       {subTab === 'schedules' && (
         <div className="space-y-6 animate-fade-in">
           
-          <div className="bg-white rounded-3xl p-6 border border-[#EBEBEF] shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="bg-white rounded-2xl p-6 border border-[#E8E8EC] shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-1">
-              <h3 className="text-xl font-bold font-display text-gray-950 flex items-center gap-1.5">
+              <h3 className="text-xl font-bold font-display text-[#0F0F10] flex items-center gap-1.5">
                 <Clock className="w-5 h-5 text-[#7C5CFC]" /> Active Campaign Schedules
               </h3>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-[#6B6B78]">
                 Monitor individual lists sending statuses, delivery stats records, and real-time outbox rotation.
               </p>
             </div>
             <div className="flex gap-4">
               <button
                 onClick={() => setSubTab('create')}
-                className="bg-gray-50 hover:bg-gray-100 text-gray-700 text-xs font-semibold px-4 py-2.5 rounded-full transition-all border border-[#EBEBEF]"
+                className="bg-[#F7F7F8] hover:bg-[#F0F0F3] text-[#3A3A44] text-xs font-semibold px-4 py-2.5 rounded-full transition-all border border-[#E8E8EC]"
               >
                 + New Sequence
               </button>
@@ -1004,7 +1004,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
 
           {/* Table list */}
           {campaigns.length === 0 ? (
-            <div className="bg-white rounded-3xl border border-[#EBEBEF] overflow-hidden">
+            <div className="bg-white rounded-2xl border border-[#E8E8EC] overflow-hidden">
               {/* Header illustration area */}
               <div className="flex flex-col items-center pt-14 pb-8 px-6">
                 <div className="flex items-end gap-2 mb-8 opacity-20">
@@ -1012,42 +1012,42 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                   <div className="w-20 h-24 bg-gray-400 rounded-xl" />
                   <div className="w-16 h-20 bg-gray-300 rounded-xl rotate-[8deg]" />
                 </div>
-                <h3 className="font-display font-black text-gray-950 text-2xl tracking-tight mb-2">Nothing sent yet</h3>
-                <p className="text-sm text-gray-400 text-center max-w-xs leading-relaxed">Choose what you'd like to do next</p>
+                <h3 className="font-display font-black text-[#0F0F10] text-2xl tracking-tight mb-2">Nothing sent yet</h3>
+                <p className="text-sm text-[#9999A6] text-center max-w-xs leading-relaxed">Choose what you'd like to do next</p>
               </div>
 
               {/* Divider */}
-              <div className="border-t border-[#EBEBEF]" />
+              <div className="border-t border-[#E8E8EC]" />
 
               {/* Action rows */}
               <button
                 onClick={() => setSubTab('create')}
-                className="w-full flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors text-left"
+                className="w-full flex items-center gap-4 px-6 py-4 hover:bg-[#F7F7F8] transition-colors text-left"
               >
                 <div className="w-10 h-10 rounded-xl bg-[#F2EFFE] flex items-center justify-center flex-shrink-0">
                   <Plus className="w-5 h-5 text-[#7C5CFC]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-900 leading-snug">Create new campaign</p>
-                  <p className="text-xs text-gray-400 mt-0.5 leading-snug">Build a sequence and start sending to your list</p>
+                  <p className="text-sm font-semibold text-[#0F0F10] leading-snug">Create new campaign</p>
+                  <p className="text-xs text-[#9999A6] mt-0.5 leading-snug">Build a sequence and start sending to your list</p>
                 </div>
-                <svg className="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                <svg className="w-4 h-4 text-[#C4C4CE] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
               </button>
 
-              <div className="border-t border-[#EBEBEF]" />
+              <div className="border-t border-[#E8E8EC]" />
 
               <button
                 onClick={() => setSubTab('direct')}
-                className="w-full flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors text-left"
+                className="w-full flex items-center gap-4 px-6 py-4 hover:bg-[#F7F7F8] transition-colors text-left"
               >
                 <div className="w-10 h-10 rounded-xl bg-[#F2EFFE] flex items-center justify-center flex-shrink-0">
                   <Send className="w-4 h-4 text-[#7C5CFC]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-900 leading-snug">Send a direct email</p>
-                  <p className="text-xs text-gray-400 mt-0.5 leading-snug">Fire a one-off message to any recipient instantly</p>
+                  <p className="text-sm font-semibold text-[#0F0F10] leading-snug">Send a direct email</p>
+                  <p className="text-xs text-[#9999A6] mt-0.5 leading-snug">Fire a one-off message to any recipient instantly</p>
                 </div>
-                <svg className="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                <svg className="w-4 h-4 text-[#C4C4CE] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
               </button>
             </div>
           ) : (
@@ -1061,7 +1061,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                 return (
                   <div
                     key={c.id}
-                    className="bg-white border border-[#EBEBEF] rounded-3xl shadow-sm overflow-hidden transition-all"
+                    className="bg-white border border-[#E8E8EC] rounded-2xl shadow-sm overflow-hidden transition-all"
                   >
                     {/* Core Row */}
                     <div className="p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
@@ -1076,26 +1076,26 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                             c.status === 'running' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
                             c.status === 'paused' ? 'bg-amber-50 text-amber-700 border-amber-200' :
                             c.status === 'completed' ? 'bg-blue-50 text-blue-700 border-blue-200' :
-                            'bg-gray-50 text-gray-600 border-gray-200'
+                            'bg-[#F7F7F8] text-[#6B6B78] border-[#E8E8EC]'
                           }`}>
                             {c.status}
                           </span>
                         </div>
-                        <h4 className="font-display font-black text-gray-950 text-lg tracking-tight leading-snug">{c.name}</h4>
-                        <p className="text-[11px] text-gray-500 truncate">
-                          Subject: <span className="font-mono text-gray-800">{c.subject}</span>
+                        <h4 className="font-display font-black text-[#0F0F10] text-lg tracking-tight leading-snug">{c.name}</h4>
+                        <p className="text-[11px] text-[#6B6B78] truncate">
+                          Subject: <span className="font-mono text-[#1A1A20]">{c.subject}</span>
                         </p>
                       </div>
 
                       {/* Info limit grids */}
                       <div className="grid grid-cols-2 gap-4 text-xs lg:w-72 leading-relaxed">
                         <div className="space-y-0.5">
-                          <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Recipients Folder</p>
-                          <p className="font-semibold text-gray-800 truncate">{c.contactListName}</p>
+                          <p className="text-[9px] font-black text-[#9999A6] uppercase tracking-widest">Recipients Folder</p>
+                          <p className="font-semibold text-[#1A1A20] truncate">{c.contactListName}</p>
                         </div>
                         <div className="space-y-0.5">
-                          <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Pacing Outbox</p>
-                          <p className="font-semibold text-gray-800">
+                          <p className="text-[9px] font-black text-[#9999A6] uppercase tracking-widest">Pacing Outbox</p>
+                          <p className="font-semibold text-[#1A1A20]">
                             1 send / {c.delaySeconds}s (rotating)
                           </p>
                         </div>
@@ -1103,17 +1103,17 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
 
                       {/* Progress trackers columns */}
                       <div className="space-y-2 lg:w-48">
-                        <div className="flex justify-between text-[11px] text-gray-500">
+                        <div className="flex justify-between text-[11px] text-[#6B6B78]">
                           <span>Progress ({progressPercentage}%)</span>
-                          <span className="font-mono font-bold text-gray-800">{sent}/{total}</span>
+                          <span className="font-mono font-bold text-[#1A1A20]">{sent}/{total}</span>
                         </div>
-                        <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                        <div className="w-full h-1.5 bg-[#F0F0F3] rounded-full overflow-hidden">
                           <div
                             className="h-full bg-gradient-to-r from-[#7C5CFC] to-[#9175FE] rounded-full"
                             style={{ width: `${progressPercentage}%` }}
                           />
                         </div>
-                        <div className="flex gap-4 text-[10px] text-gray-400 font-mono">
+                        <div className="flex gap-4 text-[10px] text-[#9999A6] font-mono">
                           <span className="text-emerald-600 font-bold">Sent: {c.successCount || 0}</span>
                           <span className="text-red-500 font-bold">Errors: {c.failedCount || 0}</span>
                         </div>
@@ -1161,7 +1161,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                             setEditReplyTo((c as any).replyTo || '');
                             setEditSenderName((c as any).senderName || '');
                           }}
-                          className="p-2 text-gray-500 hover:bg-gray-150 rounded-xl transition-all"
+                          className="p-2 text-[#6B6B78] hover:bg-gray-150 rounded-xl transition-all"
                           title="Settings"
                         >
                           <Edit className="w-4 h-4" />
@@ -1169,7 +1169,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
 
                         <button
                           onClick={() => handleDeleteCampaign(c.id)}
-                          className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"
+                          className="p-2 text-[#9999A6] hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"
                           title="Clean record"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -1177,7 +1177,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
 
                         <button
                           onClick={() => toggleExpandLogGroup(c.id)}
-                          className="p-2 text-gray-600 hover:bg-gray-100 rounded-xl transition-all flex items-center gap-1.5 text-xs font-semibold border border-[#EBEBEF]"
+                          className="p-2 text-[#6B6B78] hover:bg-[#F0F0F3] rounded-xl transition-all flex items-center gap-1.5 text-xs font-semibold border border-[#E8E8EC]"
                         >
                           <span>Logs</span>
                           {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
@@ -1188,9 +1188,9 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
 
                     {/* Expand logs tracking lists */}
                     {isExpanded && (
-                      <div className="bg-[#FAFAFD] border-t border-[#EBEBEF] p-6 space-y-4">
+                      <div className="bg-[#FAFAFD] border-t border-[#E8E8EC] p-6 space-y-4">
                         <div className="flex justify-between items-center">
-                          <h5 className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-1">
+                          <h5 className="text-[10px] font-black text-[#9999A6] uppercase tracking-widest flex items-center gap-1">
                             <BarChart2 className="w-3.5 h-3.5 text-[#7C5CFC]" /> Live Dispatch Streams ({logs.length}{logs.length >= 50 ? ' — showing latest 50' : ''})
                           </h5>
                           <button
@@ -1207,9 +1207,9 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                             <div className="w-5 h-5 border-2 border-[#7C5CFC]/20 border-t-[#7C5CFC] rounded-full animate-spin mx-auto" />
                           </div>
                         ) : logs.length === 0 ? (
-                          <p className="text-xs text-gray-400 italic text-center py-4">No emails have been dispatched for this outbox track yet.</p>
+                          <p className="text-xs text-[#9999A6] italic text-center py-4">No emails have been dispatched for this outbox track yet.</p>
                         ) : (
-                          <div className="max-h-60 overflow-y-auto space-y-2 text-xs border border-[#EBEBEF] rounded-2xl bg-white p-3.5">
+                          <div className="max-h-60 overflow-y-auto space-y-2 text-xs border border-[#E8E8EC] rounded-2xl bg-white p-3.5">
                             {logs.map((log) => (
                               <div
                                 key={log.id}
@@ -1218,17 +1218,17 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                                 <div className="space-y-1 overflow-hidden">
                                   <div className="flex items-center gap-2">
                                     <span className={`w-1.5 h-1.5 rounded-full ${log.status === 'success' ? 'bg-emerald-500' : 'bg-red-500'}`} />
-                                    <span className="font-semibold text-gray-900">{log.recipient}</span>
-                                    <span className="text-[10px] text-gray-400 font-mono">from {log.sender}</span>
+                                    <span className="font-semibold text-[#0F0F10]">{log.recipient}</span>
+                                    <span className="text-[10px] text-[#9999A6] font-mono">from {log.sender}</span>
                                   </div>
-                                  <p className="text-gray-500 text-[11px] truncate">Subject: '{log.subject}'</p>
+                                  <p className="text-[#6B6B78] text-[11px] truncate">Subject: '{log.subject}'</p>
                                   {log.errorMessage && (
                                     <p className="text-red-500 text-[10px] font-mono leading-relaxed bg-red-50/50 p-1.5 rounded border border-red-100">
                                       Error: {log.errorMessage}
                                     </p>
                                   )}
                                 </div>
-                                <span className="text-[10px] font-mono text-gray-400 shrink-0">
+                                <span className="text-[10px] font-mono text-[#9999A6] shrink-0">
                                   {new Date(log.timestamp).toLocaleTimeString()}
                                 </span>
                               </div>
@@ -1250,12 +1250,12 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
       {subTab === 'direct' && (
         <div className="space-y-6 animate-fade-in">
           
-          <div className="bg-white rounded-3xl p-6 border border-[#EBEBEF] shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="bg-white rounded-2xl p-6 border border-[#E8E8EC] shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-1">
-              <h3 className="text-xl font-bold font-display text-gray-950 flex items-center gap-1.5">
+              <h3 className="text-xl font-bold font-display text-[#0F0F10] flex items-center gap-1.5">
                 <Send className="w-5 h-5 text-[#7C5CFC]" /> Direct Single Dispatch
               </h3>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-[#6B6B78]">
                 Send a one-off email directly from any connected Gmail account — bypasses campaign sequences.
               </p>
             </div>
@@ -1264,23 +1264,23 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
             
             {/* Compose message form */}
-            <div className="lg:col-span-2 bg-white border border-[#EBEBEF] rounded-3xl p-6 shadow-[0_2px_12px_-3px_rgba(0,0,0,0.03)]">
+            <div className="lg:col-span-2 bg-white border border-[#E8E8EC] rounded-2xl p-6 shadow-[0_2px_12px_-3px_rgba(0,0,0,0.03)]">
               <form onSubmit={handleSendDirectEmail} className="space-y-5">
                 
-                <h4 className="font-display font-black text-gray-950 text-base pb-2 border-b border-gray-100">
+                <h4 className="font-display font-black text-[#0F0F10] text-base pb-2 border-b border-[#EBEBEF]">
                   Compose Outbox
                 </h4>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Select Sender node */}
                   <div className="space-y-1.5">
-                    <label className="text-[10px] text-gray-400 font-mono uppercase font-bold tracking-wider">
+                    <label className="text-[10px] text-[#9999A6] font-mono uppercase font-bold tracking-wider">
                       Sender Account
                     </label>
                     <select
                       value={directSender}
                       onChange={(e) => setDirectSender(e.target.value)}
-                      className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-3 text-xs font-mono focus:outline-none focus:border-[#7C5CFC] cursor-pointer"
+                      className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-3 text-xs font-mono focus:outline-none focus:border-[#7C5CFC] cursor-pointer"
                     >
                       {accounts.length === 0 ? (
                         <option value="">No accounts connected</option>
@@ -1296,7 +1296,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
 
                   {/* Recipient Input */}
                   <div className="space-y-1.5">
-                    <label className="text-[10px] text-gray-400 font-mono uppercase font-bold tracking-wider">
+                    <label className="text-[10px] text-[#9999A6] font-mono uppercase font-bold tracking-wider">
                       Recipient Address
                     </label>
                     <input
@@ -1305,14 +1305,14 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                       placeholder="lead@destination.com"
                       value={directRecipient}
                       onChange={(e) => setDirectRecipient(e.target.value)}
-                      className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                      className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-[#7C5CFC]"
                     />
                   </div>
                 </div>
 
                 {/* Subject Input */}
                 <div className="space-y-1.5">
-                  <label className="text-[10px] text-gray-400 font-mono uppercase font-bold tracking-wider">
+                  <label className="text-[10px] text-[#9999A6] font-mono uppercase font-bold tracking-wider">
                     Subject Line
                   </label>
                   <input
@@ -1321,14 +1321,14 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                     placeholder="Subject outline"
                     value={directSubject}
                     onChange={(e) => setDirectSubject(e.target.value)}
-                    className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                    className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-[#7C5CFC]"
                   />
                 </div>
 
                 {/* Pacing Settings */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[10px] text-gray-400 font-mono uppercase font-bold tracking-wider">
+                    <label className="text-[10px] text-[#9999A6] font-mono uppercase font-bold tracking-wider">
                       Delay Between Sends (seconds)
                     </label>
                     <input
@@ -1337,13 +1337,13 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                       min={0}
                       value={directDelaySeconds}
                       onChange={(e) => setDirectDelaySeconds(Math.max(0, parseInt(e.target.value) || 0))}
-                      className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                      className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-[#7C5CFC]"
                       placeholder="Interval wait period"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[10px] text-gray-400 font-mono uppercase font-bold tracking-wider">
+                    <label className="text-[10px] text-[#9999A6] font-mono uppercase font-bold tracking-wider">
                       Total Email Sends (Count)
                     </label>
                     <input
@@ -1352,7 +1352,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                       min={1}
                       value={directTotalEmails}
                       onChange={(e) => setDirectTotalEmails(Math.max(1, parseInt(e.target.value) || 1))}
-                      className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                      className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-[#7C5CFC]"
                       placeholder="Total dispatches to execute"
                     />
                   </div>
@@ -1368,7 +1368,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                         setNewTemplateBody(directBody);
                         setShowTemplateModal(true);
                       }}
-                      className="text-[10px] text-gray-400 hover:text-[#7C5CFC] hover:underline font-mono uppercase font-bold tracking-wider cursor-pointer select-none"
+                      className="text-[10px] text-[#9999A6] hover:text-[#7C5CFC] hover:underline font-mono uppercase font-bold tracking-wider cursor-pointer select-none"
                       title="Click to design & manage templates"
                     >
                       Message Body (HTML support) <span className="text-[10px] text-[#7C5CFC] font-black">✦ Manage Templates (Popup)</span>
@@ -1396,7 +1396,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                     placeholder="Write your email body..."
                     value={directBody}
                     onChange={(e) => setDirectBody(e.target.value)}
-                    className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-2xl p-4 text-xs font-sans focus:outline-none focus:border-[#7C5CFC] resize-none leading-relaxed"
+                    className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-2xl p-4 text-xs font-sans focus:outline-none focus:border-[#7C5CFC] resize-none leading-relaxed"
                   />
                 </div>
 
@@ -1419,7 +1419,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                   <button
                     type="submit"
                     disabled={sendingDirect || accounts.length === 0}
-                    className="bg-gradient-to-r from-[#7C5CFC] to-[#9B7EFD] hover:opacity-95 disabled:bg-gray-200 disabled:text-gray-400 text-white font-semibold text-xs px-8 py-3 rounded-full transition-all shadow-sm flex items-center gap-2 cursor-pointer border-0"
+                    className="bg-gradient-to-r from-[#7C5CFC] to-[#9B7EFD] hover:opacity-95 disabled:bg-gray-200 disabled:text-[#9999A6] text-white font-semibold text-xs px-8 py-3 rounded-full transition-all shadow-sm flex items-center gap-2 cursor-pointer border-0"
                   >
                     {sendingDirect ? (
                       <>
@@ -1439,9 +1439,9 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
             </div>
 
             {/* Direct Send Logs sidebar */}
-            <div className="bg-white border border-[#EBEBEF] rounded-3xl p-6 shadow-[0_2px_12px_-3px_rgba(0,0,0,0.03)] space-y-4">
-              <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                <h4 className="font-display font-black text-gray-950 text-base">
+            <div className="bg-white border border-[#E8E8EC] rounded-2xl p-6 shadow-[0_2px_12px_-3px_rgba(0,0,0,0.03)] space-y-4">
+              <div className="flex justify-between items-center pb-2 border-b border-[#EBEBEF]">
+                <h4 className="font-display font-black text-[#0F0F10] text-base">
                   Direct Receipts ({directLogs.length})
                 </h4>
                 <button
@@ -1455,7 +1455,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
               </div>
 
               {directLogs.length === 0 ? (
-                <div className="text-center py-20 text-gray-400 text-xs italic leading-relaxed">
+                <div className="text-center py-20 text-[#9999A6] text-xs italic leading-relaxed">
                   No instant direct dispatches recorded yet from this panel.
                 </div>
               ) : (
@@ -1463,10 +1463,10 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                   {directLogs.map((log) => (
                     <div 
                       key={log.id} 
-                      className="p-3 border border-gray-100 bg-gray-50/40 rounded-xl space-y-1 text-xs"
+                      className="p-3 border border-[#EBEBEF] bg-gray-50/40 rounded-xl space-y-1 text-xs"
                     >
                       <div className="flex justify-between items-start">
-                        <span className="font-bold text-gray-800 truncate block max-w-[140px]" title={log.recipient}>
+                        <span className="font-bold text-[#1A1A20] truncate block max-w-[140px]" title={log.recipient}>
                           {log.recipient}
                         </span>
                         <span className={`px-1.5 py-0.5 rounded text-[8px] font-bold uppercase tracking-wider ${
@@ -1477,14 +1477,14 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                           {log.status === 'success' ? 'Sent' : 'Fail'}
                         </span>
                       </div>
-                      <p className="text-[9px] text-gray-400 truncate">Sender: {log.sender}</p>
-                      <p className="text-[10px] text-gray-500 truncate italic">"{log.subject}"</p>
+                      <p className="text-[9px] text-[#9999A6] truncate">Sender: {log.sender}</p>
+                      <p className="text-[10px] text-[#6B6B78] truncate italic">"{log.subject}"</p>
                       {log.errorMessage && (
                         <p className="text-red-500 text-[8px] font-mono bg-red-50/55 p-1 rounded">
                           Error: {log.errorMessage}
                         </p>
                       )}
-                      <div className="text-right text-[8px] text-gray-400 font-mono mt-1 pt-1 border-t border-dashed border-gray-100">
+                      <div className="text-right text-[8px] text-[#9999A6] font-mono mt-1 pt-1 border-t border-dashed border-[#EBEBEF]">
                         {new Date(log.timestamp).toLocaleTimeString()}
                       </div>
                     </div>
@@ -1501,14 +1501,14 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
       {/* EDIT CAMPAIGN PARAMETERS OVERLAY PANEL */}
       {editingCampaign && (
         <div className="fixed inset-0 z-50 bg-gray-950/40 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl border border-[#EBEBEF] w-full max-w-xl shadow-lg flex flex-col p-6 space-y-5">
+          <div className="bg-white rounded-2xl border border-[#E8E8EC] w-full max-w-xl shadow-lg flex flex-col p-6 space-y-5">
             
-            <div className="pb-3 border-b border-gray-100 flex justify-between items-center">
+            <div className="pb-3 border-b border-[#EBEBEF] flex justify-between items-center">
               <div>
-                <h3 className="font-display font-black text-gray-900 text-lg">Modify Campaign Parameters</h3>
-                <p className="text-[10px] text-gray-400 font-mono">Edit live metrics and schedules dynamically</p>
+                <h3 className="font-display font-black text-[#0F0F10] text-lg">Modify Campaign Parameters</h3>
+                <p className="text-[10px] text-[#9999A6] font-mono">Edit live metrics and schedules dynamically</p>
               </div>
-              <button onClick={() => setEditingCampaign(null)} className="text-gray-400 hover:text-gray-700">
+              <button onClick={() => setEditingCampaign(null)} className="text-[#9999A6] hover:text-[#3A3A44]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -1517,93 +1517,93 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
 
             <form onSubmit={handleSaveCampaignEdits} className="space-y-4">
               <div className="space-y-1">
-                <label className="block text-xs font-semibold text-gray-500">Campaign Title</label>
+                <label className="block text-xs font-semibold text-[#6B6B78]">Campaign Title</label>
                 <input
                   type="text"
                   required
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                  className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-[#7C5CFC]"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="block text-xs font-semibold text-gray-500">Subject Line Override</label>
+                <label className="block text-xs font-semibold text-[#6B6B78]">Subject Line Override</label>
                 <input
                   type="text"
                   required
                   value={editSubject}
                   onChange={(e) => setEditSubject(e.target.value)}
-                  className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                  className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-[#7C5CFC]"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="block text-xs font-semibold text-gray-500">Body Template Draft</label>
+                <label className="block text-xs font-semibold text-[#6B6B78]">Body Template Draft</label>
                 <textarea
                   rows={4}
                   required
                   value={editBody}
                   onChange={(e) => setEditBody(e.target.value)}
-                  className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-2xl p-3.5 text-xs text-sans focus:outline-none focus:border-[#7C5CFC] resize-none leading-relaxed"
+                  className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-2xl p-3.5 text-xs text-sans focus:outline-none focus:border-[#7C5CFC] resize-none leading-relaxed"
                 />
               </div>
 
               {/* Reply-To field */}
               <div className="space-y-1">
-                <label className="block text-xs font-semibold text-gray-500">Reply-To Email <span className="text-gray-400 font-normal">(optional)</span></label>
+                <label className="block text-xs font-semibold text-[#6B6B78]">Reply-To Email <span className="text-[#9999A6] font-normal">(optional)</span></label>
                 <input
                   type="email"
                   placeholder="replies@yourdomain.com"
                   value={editReplyTo}
                   onChange={(e) => setEditReplyTo(e.target.value)}
-                  className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                  className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-[#7C5CFC]"
                 />
               </div>
 
               {/* Sender Name field */}
               <div className="space-y-1">
-                <label className="block text-xs font-semibold text-gray-500">Sender Display Name <span className="text-gray-400 font-normal">(optional)</span></label>
+                <label className="block text-xs font-semibold text-[#6B6B78]">Sender Display Name <span className="text-[#9999A6] font-normal">(optional)</span></label>
                 <input
                   type="text"
                   placeholder="Your Company Name"
                   value={editSenderName}
                   onChange={(e) => setEditSenderName(e.target.value)}
-                  className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                  className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-[#7C5CFC]"
                 />
               </div>
 
               {editingCampaign.type === 'normal' ? (
                 <div className="space-y-1">
-                  <label className="block text-xs font-semibold text-gray-500">Send Delay (s)</label>
+                  <label className="block text-xs font-semibold text-[#6B6B78]">Send Delay (s)</label>
                   <input
                     type="number"
                     min={1}
                     required
                     value={editDelaySeconds}
                     onChange={(e) => setEditDelaySeconds(Math.max(1, Number(e.target.value)))}
-                    className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                    className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-[#7C5CFC]"
                   />
                 </div>
               ) : (
                 <div className="space-y-1">
-                  <label className="block text-xs font-semibold text-gray-500">Rate Limit per Hour per Account</label>
+                  <label className="block text-xs font-semibold text-[#6B6B78]">Rate Limit per Hour per Account</label>
                   <input
                     type="number"
                     min={1}
                     required
                     value={editPerHour}
                     onChange={(e) => setEditPerHour(Math.max(1, Number(e.target.value)))}
-                    className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                    className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-[#7C5CFC]"
                   />
                 </div>
               )}
 
-              <div className="pt-3 border-t border-gray-100 flex justify-end gap-3.5">
+              <div className="pt-3 border-t border-[#EBEBEF] flex justify-end gap-3.5">
                 <button
                   type="button"
                   onClick={() => setEditingCampaign(null)}
-                  className="px-4 py-2 text-xs font-semibold border border-gray-250 hover:bg-gray-50 text-gray-600 rounded-xl cursor-pointer"
+                  className="px-4 py-2 text-xs font-semibold border border-gray-250 hover:bg-[#F7F7F8] text-[#6B6B78] rounded-xl cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -1623,21 +1623,21 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
       {/* TEMPLATE MANAGER POPUP OVERLAY */}
       {showTemplateModal && (
         <div className="fixed inset-0 z-50 bg-gray-950/40 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-white rounded-3xl border border-[#EBEBEF] w-full max-w-4xl shadow-xl flex flex-col overflow-hidden max-h-[90vh]">
+          <div className="bg-white rounded-2xl border border-[#E8E8EC] w-full max-w-4xl shadow-xl flex flex-col overflow-hidden max-h-[90vh]">
             
             {/* Header section */}
-            <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100 flex justify-between items-center shrink-0">
+            <div className="bg-gray-50/50 px-6 py-4 border-b border-[#EBEBEF] flex justify-between items-center shrink-0">
               <div>
                 <dt className="text-xs text-[#7C5CFC] font-mono tracking-wider font-bold uppercase">
                   Workspace Template Manager ({templateModalTarget === 'campaign' ? 'Campaign Designer' : 'Direct Sender'})
                 </dt>
-                <h3 className="font-display font-black text-gray-950 text-xl flex items-center gap-2">
+                <h3 className="font-display font-black text-[#0F0F10] text-xl flex items-center gap-2">
                   <span className="p-1 px-1.5 bg-[#F2EFFE] text-[#7C5CFC] rounded-lg text-sm">✦</span> Template Library Catalog
                 </h3>
               </div>
               <button 
                 onClick={() => setShowTemplateModal(false)} 
-                className="text-gray-400 hover:text-gray-700 bg-white shadow-sm hover:scale-105 transition-transform p-2 rounded-full border border-gray-150 cursor-pointer"
+                className="text-[#9999A6] hover:text-[#3A3A44] bg-white shadow-sm hover:scale-105 transition-transform p-2 rounded-full border border-gray-150 cursor-pointer"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -1649,9 +1649,9 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
             <div className="flex flex-col md:flex-row overflow-y-auto flex-1 min-h-0">
               
               {/* Sidebar: Lists of Templates */}
-              <div className="w-full md:w-80 border-r border-gray-100 p-4 space-y-4 bg-gray-50/20 flex flex-col h-full overflow-y-auto">
+              <div className="w-full md:w-80 border-r border-[#EBEBEF] p-4 space-y-4 bg-gray-50/20 flex flex-col h-full overflow-y-auto">
                 <div className="flex justify-between items-center pr-1">
-                  <span className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-widest">Available Templates</span>
+                  <span className="text-[10px] font-mono font-bold text-[#9999A6] uppercase tracking-widest">Available Templates</span>
                   <button
                     type="button"
                     onClick={() => {
@@ -1690,7 +1690,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                       >
                         <div className="w-full">
                           <div className="flex justify-between items-center gap-2">
-                            <span className="font-bold text-gray-900 text-xs block truncate max-w-[160px]">
+                            <span className="font-bold text-[#0F0F10] text-xs block truncate max-w-[160px]">
                               {tmpl.name}
                             </span>
                             <span className={`px-1.5 py-0.5 text-[7px] font-bold rounded uppercase ${
@@ -1699,7 +1699,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                               {isSystemPreset ? 'Preset' : 'Saved'}
                             </span>
                           </div>
-                          <span className="text-[10px] text-gray-400 truncate block mt-0.5">{tmpl.subject || '(No subject spec)'}</span>
+                          <span className="text-[10px] text-[#9999A6] truncate block mt-0.5">{tmpl.subject || '(No subject spec)'}</span>
                         </div>
 
                         {!isSystemPreset && (
@@ -1718,7 +1718,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                                 }
                               }
                             }}
-                            className="absolute bottom-2.5 right-2 text-gray-300 hover:text-red-500 hover:bg-red-50 p-1 rounded-md transition-colors"
+                            className="absolute bottom-2.5 right-2 text-[#C4C4CE] hover:text-red-500 hover:bg-red-50 p-1 rounded-md transition-colors"
                             title="Remove layout"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -1733,10 +1733,10 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
               {/* Template Editor/Designer Section */}
               <div className="flex-1 p-6 space-y-4 flex flex-col overflow-y-auto">
                 <div className="space-y-1">
-                  <h4 className="font-display font-black text-gray-950 text-base">
+                  <h4 className="font-display font-black text-[#0F0F10] text-base">
                     {selectedTemplateId ? 'Modify Template Configuration' : 'Create & Register Custom Template'}
                   </h4>
-                  <p className="text-[10px] text-gray-400">
+                  <p className="text-[10px] text-[#9999A6]">
                     Fine-tune attributes including layout formatting tags and apply instantly to active outbox.
                   </p>
                 </div>
@@ -1746,12 +1746,12 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                   
                   {/* Template Title */}
                   <div className="space-y-1">
-                    <label className="text-[10px] text-gray-400 font-mono uppercase font-bold tracking-wider">
+                    <label className="text-[10px] text-[#9999A6] font-mono uppercase font-bold tracking-wider">
                       Template Internal Name
                     </label>
                     <input
                       type="text"
-                      className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-2.5 text-xs text-gray-800 font-bold focus:outline-none focus:border-[#7C5CFC]"
+                      className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-2.5 text-xs text-[#1A1A20] font-bold focus:outline-none focus:border-[#7C5CFC]"
                       value={newTemplateName}
                       onChange={(e) => setNewTemplateName(e.target.value)}
                       placeholder="e.g. Q4 Warm Welcome"
@@ -1760,12 +1760,12 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
 
                   {/* Subject Input */}
                   <div className="space-y-1">
-                    <label className="text-[10px] text-gray-400 font-mono uppercase font-bold tracking-wider">
+                    <label className="text-[10px] text-[#9999A6] font-mono uppercase font-bold tracking-wider">
                       Subject Line Prefix / Line
                     </label>
                     <input
                       type="text"
-                      className="w-full bg-[#FAFAFD] border border-[#EBEBEF] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#7C5CFC]"
+                      className="w-full bg-[#FAFAFD] border border-[#E8E8EC] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#7C5CFC]"
                       value={newTemplateSubject}
                       onChange={(e) => setNewTemplateSubject(e.target.value)}
                       placeholder="Sequence Subject Template (supports {{firstName}}, {{company}})"
@@ -1775,7 +1775,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                   {/* Template body */}
                   <div className="space-y-1 flex-1 flex flex-col min-h-[180px]">
                     <div className="flex justify-between items-center">
-                      <label className="text-[10px] text-gray-400 font-mono uppercase font-bold tracking-wider">
+                      <label className="text-[10px] text-[#9999A6] font-mono uppercase font-bold tracking-wider">
                         Body Content Markup (HTML & placeholders supported)
                       </label>
                       <button
@@ -1785,18 +1785,18 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                             `<blockquote>\nHi {{firstName}},\n\nWe would love to coordinate on behalf of your target at {{company}}.\n\nThanks!\n</blockquote>`
                           );
                         }}
-                        className="text-[9px] text-gray-500 hover:text-[#7C5CFC]"
+                        className="text-[9px] text-[#6B6B78] hover:text-[#7C5CFC]"
                       >
                         Insert Demo HTML block
                       </button>
                     </div>
                     <textarea
-                      className="w-full flex-1 bg-[#FAFAFD] border border-[#EBEBEF] rounded-2xl p-4 text-xs font-mono focus:outline-none focus:border-[#7C5CFC] resize-none leading-relaxed"
+                      className="w-full flex-1 bg-[#FAFAFD] border border-[#E8E8EC] rounded-2xl p-4 text-xs font-mono focus:outline-none focus:border-[#7C5CFC] resize-none leading-relaxed"
                       value={newTemplateBody}
                       onChange={(e) => setNewTemplateBody(e.target.value)}
                       placeholder="Type HTML email code here..."
                     />
-                    <div className="flex justify-between text-[9px] text-gray-400 font-mono pt-1">
+                    <div className="flex justify-between text-[9px] text-[#9999A6] font-mono pt-1">
                       <span>Supported variables: {"{{firstName}}"} , {"{{company}}"}</span>
                       <span>Plaintext or HTML elements are allowed</span>
                     </div>
@@ -1805,7 +1805,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                 </div>
 
                 {/* Footer and Actions */}
-                <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row gap-3 justify-between items-center shrink-0">
+                <div className="pt-4 border-t border-[#EBEBEF] flex flex-col sm:flex-row gap-3 justify-between items-center shrink-0">
                   
                   {/* Save to library as Custom Template */}
                   <div>
@@ -1843,7 +1843,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                           alert('Registered custom template successfully in library catalog!');
                         }
                       }}
-                      className="text-xs bg-gray-50 border border-gray-200 text-gray-700 font-bold px-4 py-2.5 rounded-full hover:bg-gray-100 cursor-pointer inline-flex items-center gap-1"
+                      className="text-xs bg-[#F7F7F8] border border-[#E8E8EC] text-[#3A3A44] font-bold px-4 py-2.5 rounded-full hover:bg-[#F0F0F3] cursor-pointer inline-flex items-center gap-1"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>{selectedTemplateId && !selectedTemplateId.startsWith('template_') ? 'Update Saved Template' : 'Save As Custom Template'}</span>
@@ -1855,7 +1855,7 @@ export default function CampaignsTab({ campaigns, accounts, contacts, onRefresh 
                     <button
                       type="button"
                       onClick={() => setShowTemplateModal(false)}
-                      className="px-4 py-2.5 hover:bg-gray-50 text-xs font-bold text-gray-500 rounded-full border border-gray-200 cursor-pointer"
+                      className="px-4 py-2.5 hover:bg-[#F7F7F8] text-xs font-bold text-[#6B6B78] rounded-full border border-[#E8E8EC] cursor-pointer"
                     >
                       Close
                     </button>
