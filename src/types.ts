@@ -37,7 +37,6 @@ export interface Campaign {
   sentCount: number;
   successCount: number;
   failedCount: number;
-  openedCount: number;
   createdAt: string;
   startedAt?: string;
 }
